@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private PlayerBall player;
 
-    // Update is called once per frame
+    private void Start()
+    {
+        player = FindObjectOfType<PlayerBall>();
+    }
     void Update()
     {
-        
+        if (Input.GetMouseButtonDown(0))
+        {
+            player.Direction = !player.Direction;
+        }
+            
     }
+
 }
