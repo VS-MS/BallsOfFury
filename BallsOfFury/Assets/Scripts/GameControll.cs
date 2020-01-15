@@ -2,34 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameControll : MonoBehaviour
-{
-    public static GameControll instance { get; private set; }
 
-    void Awake()
+public interface IGameControll
     {
-        Screen.sleepTimeout = SleepTimeout.NeverSleep;
-
-        //Проверяем, есть ли экземпляр объекта на сцене, если есть, удаляем этот экземпляр
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(this.gameObject);
-        }
-        else
-        {
-            Destroy(this.gameObject);
-            //return;
-        }
+    void SetPauseOn();
+    void SetPauseOff();
+    bool IsPaused { get; }
     }
+public class GameControll : IGameControll
+{
+    public bool IsPaused { get { return isPaused; } }
+    public bool isPaused = false;
 
     public void SetPauseOn()
     {
+        isPaused = true;
         Time.timeScale = 0;
     }
 
     public void SetPauseOff()
     {
+        isPaused = false;
         Time.timeScale = 1;
     }
 }
