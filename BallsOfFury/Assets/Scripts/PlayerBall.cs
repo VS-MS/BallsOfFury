@@ -28,4 +28,24 @@ public class PlayerBall : MonoBehaviour
         }
         
     }
+
+    /*
+    //Стреляем лучем под ноги и смотрим там наличие платформы.
+    //Если платформа есть, возврашаем true
+    //если платформа не нашлась, возврашаем false
+    private bool GetPlatform()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, -Vector3.up, out hit, Mathf.Infinity))
+        {
+            Debug.DrawRay(transform.position, -Vector3.up * hit.distance, Color.yellow);
+            return true;
+        }
+        else
+        {
+            Debug.DrawRay(transform.position, -Vector3.up * 1000, Color.white);
+            return false;
+        }
+    }
+    */
 }
