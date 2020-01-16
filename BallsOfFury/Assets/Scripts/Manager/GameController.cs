@@ -5,28 +5,79 @@ using Zenject;
 
 public class GameController : MonoBehaviour 
 {
-    
-    //Флаг для опредиления, готовности игры к запуску.
-    public bool IsReady;
+    [SerializeField]
+    private GameObject mainPlatform;
+    [Inject]
+    private PlayerBall playerBall;
+    [Inject]
+    private CameraController cameraController;
+
+    //Флаг для определения, готовности игры к запуску.
+    [HideInInspector]
+    public bool IsReady = true;
+
     private ITimeController timeController;
     [Inject]
     public void Setup(ITimeController timeController)
     {
         this.timeController = timeController;
     }
+
+    private void Awake()
+    {
+        IsReady = true;
+        timeController.SetPauseOn();
+
+    }
+    //Запускаем игру
     public void Play()
     {
-        //Выключитьпаузу.
-        timeController.SetPauseOff();
-        Debug.Log(timeController.IsPaused);
         //Запустить создание платформ.
+        //Выключить паузу.
+        timeController.SetPauseOff();
+        IsReady = false;
+
     }
 
+    //Перестраиваем уровень и готовимся к запуску игры.
     public void Restart()
     {
-        //Выставить шар на начальную точку и выставить первые две платформы и главную платформу.
+        //Ставим на начальное положение игрока, камеру и платформы.
+        mainPlatform.transform.position = new Vector3(0, 0, 0);
+        playerBall.transform.position = new Vector3(.5f, .4f, -.5f);
+        //Выставляем флаг направления игрока "Вверх".
+        playerBall.Direction = false;
+        cameraController.transform.position = new Vector3(-1.5f, 3.4f, -2.5f);
+        
+        //Выставляем флаг готовности к запуску
+        IsReady = true;
+    }
+
+    //Game Over
+    public void GameIsEnd()
+    {
+        IsReady = false;
         //Выставить время на паузу.
         timeController.SetPauseOn();
-        
+    }
+
+    private void Update()
+    {
+        //Если игрок упал - запускаем конец игры.
+        if (playerBall.transform.position.y < -0.5f)
+        {
+            GameIsEnd();
+            //Если нажать ЛКМ - запускаем перезапуск уровня.
+            if (Input.GetMouseButtonDown(0))
+            {
+                Restart();
+            }
+        }
+        //Если уровень готов и игрок нажал ЛКМ - запускаем игру.
+        else if (Input.GetMouseButtonDown(0) && IsReady)
+        {
+            Play();
+        }
+
     }
 }

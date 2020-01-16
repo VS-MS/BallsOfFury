@@ -10,31 +10,38 @@ public class PlayerBall : MonoBehaviour
 
     //Если значение true двигаем прямо,
     //если false двигаем направо
+    [HideInInspector]
     public bool Direction;
     private Rigidbody playerRigidbody;
 
     [Inject]
     private GameController gameController;
+
     void Start()
     {
         playerRigidbody = GetComponent<Rigidbody>();
-        gameController.Play();
+        //gameController.Play();
     }
 
     void FixedUpdate()
     {
-        if(Direction)
+        //Проверяем, если игрок сорвался с платформы, перестаем его толкать,
+        if(GetPlatform())
         {
-            playerRigidbody.AddForce(Vector3.forward * speed * Time.fixedDeltaTime);
+            if (Direction)
+            {
+                playerRigidbody.AddForce(Vector3.forward * speed * Time.fixedDeltaTime);
+            }
+            else
+            {
+                playerRigidbody.AddForce(Vector3.right * speed * Time.fixedDeltaTime);
+            }
         }
-        else
-        {
-            playerRigidbody.AddForce(Vector3.right * speed * Time.fixedDeltaTime);
-        }
+        
     }
 
 
-    /*
+
     //Стреляем лучем под ноги и смотрим там наличие платформы.
     //Если платформа есть, возврашаем true
     //если платформа не нашлась, возврашаем false
@@ -52,5 +59,4 @@ public class PlayerBall : MonoBehaviour
             return false;
         }
     }
-    */
 }
