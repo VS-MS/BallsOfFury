@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class PlayerBall : MonoBehaviour
 {
@@ -11,9 +12,13 @@ public class PlayerBall : MonoBehaviour
     //если false двигаем направо
     public bool Direction;
     private Rigidbody playerRigidbody;
+
+    [Inject]
+    private GameController gameController;
     void Start()
     {
         playerRigidbody = GetComponent<Rigidbody>();
+        gameController.Play();
     }
 
     void FixedUpdate()
@@ -26,8 +31,8 @@ public class PlayerBall : MonoBehaviour
         {
             playerRigidbody.AddForce(Vector3.right * speed * Time.fixedDeltaTime);
         }
-        
     }
+
 
     /*
     //Стреляем лучем под ноги и смотрим там наличие платформы.

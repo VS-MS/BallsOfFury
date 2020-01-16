@@ -9,11 +9,6 @@ public class CameraController : MonoBehaviour
     [SerializeField]
     private GameObject target;
 
-    private void Awake()
-    {
-
-    }
-
     private void Update()
     {
         //Проверяем, упал ли шарик с платформы по его коорлинатам Y

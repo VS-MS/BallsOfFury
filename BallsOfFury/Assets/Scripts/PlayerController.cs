@@ -1,15 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class PlayerController : MonoBehaviour
 {
+    [Inject]
     private PlayerBall player;
-
-    private void Start()
-    {
-        player = FindObjectOfType<PlayerBall>();
-    }
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
