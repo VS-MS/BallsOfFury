@@ -12,9 +12,12 @@ public class GameController : MonoBehaviour
     [Inject]
     private CameraController cameraController;
 
+    public int Score;
+
     //Флаг для определения, готовности игры к запуску.
     [HideInInspector]
     public bool IsReady = true;
+    public bool IsOver;
 
     private ITimeController timeController;
     [Inject]
@@ -48,15 +51,19 @@ public class GameController : MonoBehaviour
         //Выставляем флаг направления игрока "Вверх".
         playerBall.Direction = false;
         cameraController.transform.position = new Vector3(-1.5f, 3.4f, -2.5f);
-        
+
+        Score = 0;
+
         //Выставляем флаг готовности к запуску
         IsReady = true;
+        IsOver = false;
     }
 
     //Game Over
     public void GameIsEnd()
     {
         IsReady = false;
+        IsOver = true;
         //Выставить время на паузу.
         timeController.SetPauseOn();
     }
