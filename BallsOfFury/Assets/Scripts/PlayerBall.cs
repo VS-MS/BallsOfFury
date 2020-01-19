@@ -20,7 +20,6 @@ public class PlayerBall : MonoBehaviour
     void Start()
     {
         playerRigidbody = GetComponent<Rigidbody>();
-        //gameController.Play();
     }
 
     void FixedUpdate()
@@ -30,11 +29,14 @@ public class PlayerBall : MonoBehaviour
         {
             if (Direction)
             {
-                playerRigidbody.AddForce(Vector3.forward * speed * Time.fixedDeltaTime);
+                //Если использовать AddForce у шара будет инерция
+                //playerRigidbody.AddForce(Vector3.forward * speed * Time.fixedDeltaTime);
+                playerRigidbody.velocity = Vector3.forward * speed;
             }
             else
             {
-                playerRigidbody.AddForce(Vector3.right * speed * Time.fixedDeltaTime);
+                //playerRigidbody.AddForce(Vector3.right * speed * Time.fixedDeltaTime);
+                playerRigidbody.velocity = Vector3.right * speed;
             }
         }
         

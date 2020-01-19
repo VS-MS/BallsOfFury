@@ -17,6 +17,7 @@ public class GameController : MonoBehaviour
     //Флаг для определения, готовности игры к запуску.
     [HideInInspector]
     public bool IsReady = true;
+    //Флаг для определиня, что игрок проиграл.
     public bool IsOver;
 
     private ITimeController timeController;

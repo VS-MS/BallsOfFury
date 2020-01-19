@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && !gameController.IsReady)
         {
+            player.gameObject.GetComponent<Rigidbody>().velocity = new Vector3(0,0,0);
             player.Direction = !player.Direction;
         }
             
