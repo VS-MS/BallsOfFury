@@ -38,6 +38,7 @@ public class GameController : MonoBehaviour
     {
         //Запустить создание платформ.
         //Выключить паузу.
+        playerBall.Direction = true;
         timeController.SetPauseOff();
         IsReady = false;
 
@@ -50,7 +51,7 @@ public class GameController : MonoBehaviour
         mainPlatform.transform.position = new Vector3(0, 0, 0);
         playerBall.transform.position = new Vector3(.5f, .4f, -.5f);
         //Выставляем флаг направления игрока "Вверх".
-        playerBall.Direction = false;
+        playerBall.Direction = true;
         cameraController.transform.position = new Vector3(-1.5f, 3.4f, -2.5f);
 
         Score = 0;

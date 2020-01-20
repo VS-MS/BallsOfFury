@@ -1,17 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class PlatformScore : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject score;
+    [Inject]
+    private GameController gameController;
 
-    private void Start()
+    private void OnTriggerExit(Collider other)
     {
-        if(Random.Range(1, 100) <= 20)
+        if (other.gameObject.tag == "PlayerBall")
         {
-            score.SetActive(true);
+            Debug.Log(gameController);
+            gameObject.SetActive(false);
         }
     }
 

@@ -26,7 +26,7 @@ public class ObjectPooler : MonoBehaviour
         {
             for (int i = 0; i < item.AmountToPool; i++)
             {
-                GameObject obj = (GameObject)Instantiate(item.ObjectToPool);
+                GameObject obj = Instantiate(item.ObjectToPool);
                 obj.SetActive(false);
                 PooledObjects.Add(obj);
             }
@@ -48,7 +48,7 @@ public class ObjectPooler : MonoBehaviour
             {
                 if (item.ShouldExpand)
                 {
-                    GameObject obj = (GameObject)Instantiate(item.ObjectToPool);
+                    GameObject obj = Instantiate(item.ObjectToPool);
                     obj.SetActive(false);
                     PooledObjects.Add(obj);
                     return obj;

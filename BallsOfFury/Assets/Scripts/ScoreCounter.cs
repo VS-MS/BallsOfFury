@@ -3,17 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-public class CapsuleScore : MonoBehaviour
+public class ScoreCounter : MonoBehaviour
 {
     [Inject]
     private GameController gameController;
-
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "PlayerBall")
+        if(other.tag == "Capsule")
         {
             gameController.Score++;
-            gameObject.SetActive(false);
+            other.gameObject.SetActive(false);
         }
     }
 }

@@ -10,7 +10,7 @@ public class PlayerBall : MonoBehaviour
 
     //Если значение true двигаем прямо,
     //если false двигаем направо
-    [HideInInspector]
+    //[HideInInspector]
     public bool Direction;
     private Rigidbody playerRigidbody;
 
@@ -41,9 +41,6 @@ public class PlayerBall : MonoBehaviour
         }
         
     }
-
-
-
     //Стреляем лучем под ноги и смотрим там наличие платформы.
     //Если платформа есть, возврашаем true
     //если платформа не нашлась, возврашаем false
