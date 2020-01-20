@@ -11,6 +11,10 @@ public class GameController : MonoBehaviour
     private PlayerBall playerBall;
     [Inject]
     private CameraController cameraController;
+    [Inject]
+    private PlatformController platformController;
+    [Inject]
+    private ObjectPooler objectPooler;
 
     public int Score;
 
@@ -29,16 +33,20 @@ public class GameController : MonoBehaviour
 
     private void Awake()
     {
+        platformController.Initialize();
+    }
+    private void Start()
+    {
         IsReady = true;
         timeController.SetPauseOn();
-
+        
     }
     //Запускаем игру
     public void Play()
     {
         //Запустить создание платформ.
         //Выключить паузу.
-        playerBall.Direction = true;
+        playerBall.Direction = false;
         timeController.SetPauseOff();
         IsReady = false;
 
@@ -47,11 +55,12 @@ public class GameController : MonoBehaviour
     //Перестраиваем уровень и готовимся к запуску игры.
     public void Restart()
     {
+        objectPooler.DiactivateAllItem();
         //Ставим на начальное положение игрока, камеру и платформы.
         mainPlatform.transform.position = new Vector3(0, 0, 0);
         playerBall.transform.position = new Vector3(.5f, .4f, -.5f);
         //Выставляем флаг направления игрока "Вверх".
-        playerBall.Direction = true;
+        playerBall.Direction = false;
         cameraController.transform.position = new Vector3(-1.5f, 3.4f, -2.5f);
 
         Score = 0;

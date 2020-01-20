@@ -16,6 +16,8 @@ public class PlatformScore : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
-
+    public class Factory : PlaceholderFactory<PlatformScore>
+    {
+    }
 
 }

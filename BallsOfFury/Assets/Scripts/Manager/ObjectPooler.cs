@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class ObjectPooler : MonoBehaviour
 {
     [System.Serializable]
@@ -11,15 +12,11 @@ public class ObjectPooler : MonoBehaviour
         public GameObject ObjectToPool;
         public bool ShouldExpand;
     }
-    public static ObjectPooler SharedInstance;
+    //public static ObjectPooler SharedInstance;
     public List<GameObject> PooledObjects;
     public List<ObjectPoolItem> ItemsToPool;
 
     void Awake()
-    {
-        SharedInstance = this;
-    }
-    void Start()
     {
         PooledObjects = new List<GameObject>();
         foreach (ObjectPoolItem item in ItemsToPool)
@@ -56,5 +53,15 @@ public class ObjectPooler : MonoBehaviour
             }
         }
         return null;
+    }
+
+    public void DiactivateAllItem()
+    {
+        Debug.Log(PooledObjects.Count);
+        for (int i = 0; i < PooledObjects.Count; i++)
+        {
+            PooledObjects[i].SetActive(false);
+            Debug.Log("wwww");
+        }
     }
 }
