@@ -92,4 +92,26 @@ public class PlatformController : MonoBehaviour
         }
 
     }
+
+    public void SetNewPositionObj(GameObject platformObj)
+    {
+        if (Random.Range(0, 2) == 0)
+        {
+            platformPosition += new Vector3(1, 0, 0);
+            platformObj.transform.position = platformPosition;
+            if (Random.Range(1, 101) <= 20)
+            {
+                ObjCreate(PooledObjectsCapsule, platformPosition + new Vector3(0, 0.4f, 0));
+            }    
+        }
+        else
+        {
+            platformPosition += new Vector3(0, 0, 1);
+            platformObj.transform.position = platformPosition;
+            if (Random.Range(1, 101) <= 20)
+            {
+                ObjCreate(PooledObjectsCapsule, platformPosition + new Vector3(0, 0.4f, 0));
+            }   
+        }
+    }
 }

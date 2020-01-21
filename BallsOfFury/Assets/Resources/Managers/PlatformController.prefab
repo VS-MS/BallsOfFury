@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firstPlatformPosition: {x: 3.5, y: 0, z: -0.5}
-  ListSize: 10
+  ListSize: 50
   PooledObjectsPlatform: []
   PooledObjectsCapsule: []
 --- !u!114 &6678820934495788142
