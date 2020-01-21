@@ -13,8 +13,6 @@ public class GameController : MonoBehaviour
     private CameraController cameraController;
     [Inject]
     private PlatformController platformController;
-    [Inject]
-    private ObjectPooler objectPooler;
 
     public int Score;
 
@@ -55,7 +53,8 @@ public class GameController : MonoBehaviour
     //Перестраиваем уровень и готовимся к запуску игры.
     public void Restart()
     {
-        objectPooler.DiactivateAllItem();
+        platformController.DiactivateAllObj();
+        platformController.Initialize();
         //Ставим на начальное положение игрока, камеру и платформы.
         mainPlatform.transform.position = new Vector3(0, 0, 0);
         playerBall.transform.position = new Vector3(.5f, .4f, -.5f);

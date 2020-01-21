@@ -5,67 +5,70 @@ using Zenject;
 
 public class PlatformController : MonoBehaviour
 {
+
     [SerializeField]
     private Vector3 firstPlatformPosition;
     private Vector3 platformPosition;
+    [SerializeField]
+    private int ListSize;
+
     [Inject]
-    private ObjectPooler objectPooler;
+    PlatformBehaviour.Factory factoryPlatform;
+    [Inject]
+    CapsuleBehaviour.Factory factoryCapsule;
 
-    public GameObject Panel;
-    public GameObject Capsule;
-
-    public List<GameObject> PooledPanels;
-    public List<GameObject> PooledCapsule;
+    public List<GameObject> PooledObjectsPlatform;
+    public List<GameObject> PooledObjectsCapsule;
 
     private void Awake()
     {
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < ListSize; i++)
         {
-            GameObject obj = Instantiate(Panel);
-            obj.SetActive(false);
-            PooledPanels.Add(obj);
+            var obj = factoryPlatform.Create();
+            obj.gameObject.SetActive(false);
+            PooledObjectsPlatform.Add(obj.gameObject);
         }
-        for (int i = 0; i < 10; i++)
+
+        for (int i = 0; i < ListSize; i++)
         {
-            GameObject obj = Instantiate(Capsule);
-            obj.SetActive(false);
-            PooledCapsule.Add(obj);
+            var obj = factoryCapsule.Create();
+            obj.gameObject.SetActive(false);
+            PooledObjectsCapsule.Add(obj.gameObject);
         }
     }
     public void Initialize()
-    {
-        ObjCreate("Platform", firstPlatformPosition);
+    { 
+        ObjCreate(PooledObjectsPlatform, firstPlatformPosition);
         platformPosition = firstPlatformPosition;
 
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < ListSize - 1; i++)
         {
             if (Random.Range(0, 2) == 0)
             {
                 platformPosition += new Vector3(1, 0, 0);
-                ObjCreate("Platform", platformPosition);
+                ObjCreate(PooledObjectsPlatform, platformPosition);
                 if (Random.Range(1, 101) <= 20)
                 {
-                    ObjCreate("Capsule", platformPosition + new Vector3(0, 0.4f, 0));
+                    ObjCreate(PooledObjectsCapsule, platformPosition + new Vector3(0, 0.4f, 0));
                 }
             }
             else
             {
                 platformPosition += new Vector3(0, 0, 1);
-                ObjCreate("Platform", platformPosition);
+                ObjCreate(PooledObjectsPlatform, platformPosition);
                 if (Random.Range(1, 101) <= 20)
                 {
-                    ObjCreate("Capsule", platformPosition + new Vector3(0, 0.4f, 0));
+                    ObjCreate(PooledObjectsCapsule, platformPosition + new Vector3(0, 0.4f, 0));
                 }
             }
-
-        }
+        }   
     }
-
+    
     public void ObjCreate(List<GameObject> gameObjects, Vector3 position)
     {
+        
         for (int i = 0; i < gameObjects.Count; i++)
         {
-            
             if (!gameObjects[i].activeSelf)
             {
                 gameObjects[i].transform.position = position;
@@ -75,10 +78,18 @@ public class PlatformController : MonoBehaviour
         }
         
     }
-    public void ObjCreate(string tag, Vector3 position)
+
+    public void DiactivateAllObj()
     {
-        GameObject gameObject = objectPooler.GetPooledObject(tag);
-        gameObject.transform.position = position;
-        gameObject.SetActive(true);
+        for (int i = 0; i < PooledObjectsPlatform.Count; i++)
+        {
+            PooledObjectsPlatform[i].SetActive(false);
+        }
+
+        for (int i = 0; i < PooledObjectsCapsule.Count; i++)
+        {
+            PooledObjectsCapsule[i].SetActive(false);
+        }
+
     }
 }

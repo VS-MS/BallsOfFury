@@ -45,10 +45,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firstPlatformPosition: {x: 3.5, y: 0, z: -0.5}
-  Panel: {fileID: 6996599442439711958, guid: da377879be824d64c8b2bc41351bf2c7, type: 3}
-  Capsule: {fileID: 5978808503148890762, guid: 54f41e530f453af4db80a385513828b6, type: 3}
-  PooledPanels: []
-  PooledCapsule: []
+  ListSize: 10
+  PooledObjectsPlatform: []
+  PooledObjectsCapsule: []
 --- !u!114 &6678820934495788142
 MonoBehaviour:
   m_ObjectHideFlags: 0
