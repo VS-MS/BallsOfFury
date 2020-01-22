@@ -6,6 +6,7 @@ public class CameraController : MonoBehaviour
 {
     [SerializeField]
     private float speed;
+
     [SerializeField]
     private GameObject target;
 

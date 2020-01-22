@@ -14,8 +14,9 @@ public class PlatformAnimation : MonoBehaviour
     public void SetNewPosition()
     {
         platformAnimator.SetBool("IsTop", true);
-        platformController.SetNewPositionObj(parentObj);
         //перетаскиваем панель после окончания анимации на новое место
+        platformController.SetNewPositionObj(parentObj);
+        
     }
     private void Awake()
     {
@@ -23,6 +24,7 @@ public class PlatformAnimation : MonoBehaviour
     }
     private void OnCollisionExit(Collision collision)
     {
+        //Если игрок покинул платформ, включаем триггер анимации падения.
         if (collision.gameObject.tag == "PlayerBall")
         {
             platformAnimator.SetBool("IsTop", false);

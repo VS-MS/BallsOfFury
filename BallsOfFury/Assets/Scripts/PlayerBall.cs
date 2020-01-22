@@ -5,12 +5,12 @@ using Zenject;
 
 public class PlayerBall : MonoBehaviour
 {
-    [SerializeField]
+    [SerializeField, Header("Скорость движения шара")]
     private float speed;
 
-    //Если значение true двигаем прямо,
+    //Флаг направления, если значение true двигаем прямо,
     //если false двигаем направо
-    //[HideInInspector]
+    [HideInInspector]
     public bool Direction;
     private Rigidbody playerRigidbody;
 

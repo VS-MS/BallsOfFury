@@ -11,9 +11,10 @@ public interface ITimeController
 
 public class TimeController : ITimeController
 {
-    public bool IsPaused { get { return isPaused; } set { IsPaused = value; } }
     //По этой переменной будем определять паузу.
-    public bool isPaused = true;
+    public bool IsPaused { get { return isPaused; } set { IsPaused = value; } }
+    private bool isPaused = true;
+
     public void SetPauseOn()
     {
         Time.timeScale = 0;
