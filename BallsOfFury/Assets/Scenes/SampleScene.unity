@@ -128,7 +128,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!108 &170076734
 Light:
   m_ObjectHideFlags: 0
@@ -338,7 +338,7 @@ Transform:
   m_LocalPosition: {x: -1.5, y: 3.4, z: -2.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 2039139553}
+  - {fileID: 1829993650}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 30, y: 50, z: 0}
@@ -446,7 +446,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2039139552
+--- !u!1 &1829993649
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -454,43 +454,43 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2039139553}
-  - component: {fileID: 2039139554}
+  - component: {fileID: 1829993650}
+  - component: {fileID: 1829993651}
   m_Layer: 0
-  m_Name: Spot Light
+  m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2039139553
+--- !u!4 &1829993650
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2039139552}
-  m_LocalRotation: {x: 0.5669217, y: -0.000000014901159, z: -0.000000059604638, w: 0.8237717}
-  m_LocalPosition: {x: -0.04, y: 1.21, z: 3.16}
+  m_GameObject: {fileID: 1829993649}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: 3.26, z: 1.8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 534669905}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 69.07201, y: 0, z: 0}
---- !u!108 &2039139554
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!108 &1829993651
 Light:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2039139552}
+  m_GameObject: {fileID: 1829993649}
   m_Enabled: 1
   serializedVersion: 8
-  m_Type: 0
+  m_Type: 2
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1.3
-  m_Range: 10.12
-  m_SpotAngle: 129
+  m_Intensity: 7
+  m_Range: 9
+  m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
     m_Type: 0
@@ -769,6 +769,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4643051231617755197, guid: 83a3a8eca3dfd084998dfb0c3f3a8f7b,
+        type: 3}
+      propertyPath: m_Name
+      value: PlayerBall
+      objectReference: {fileID: 0}
     - target: {fileID: 621689246880547167, guid: 83a3a8eca3dfd084998dfb0c3f3a8f7b,
         type: 3}
       propertyPath: m_SpotAngle
@@ -783,11 +788,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Intensity
       value: 2.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4643051231617755197, guid: 83a3a8eca3dfd084998dfb0c3f3a8f7b,
-        type: 3}
-      propertyPath: m_Name
-      value: PlayerBall
       objectReference: {fileID: 0}
     - target: {fileID: 4643051231617755185, guid: 83a3a8eca3dfd084998dfb0c3f3a8f7b,
         type: 3}
