@@ -25,6 +25,9 @@ public class GameController : MonoBehaviour
     [HideInInspector]
     public bool IsOver = false;
 
+    [HideInInspector]
+    public bool IsGame = false;
+
     private ITimeController timeController;
     [Inject]
     public void Setup(ITimeController timeController)
@@ -41,7 +44,8 @@ public class GameController : MonoBehaviour
     private void Start()
     {
         IsReady = true;
-        timeController.SetPauseOn();
+        IsGame = false;
+        //timeController.SetPauseOn();
         
     }
 
@@ -50,7 +54,8 @@ public class GameController : MonoBehaviour
     {
         //Выставляем флаг направления игрока "Вверх".
         playerBall.Direction = false;
-        timeController.SetPauseOff();
+        IsGame = true;
+        //timeController.SetPauseOff();
 
         //Выставляем флаг готовности.
         IsReady = false;
@@ -67,8 +72,10 @@ public class GameController : MonoBehaviour
         platformController.Initialize();
 
         //Ставим на начальное положение игрока, камеру и главную платформу.
-        playerBall.transform.position = new Vector3(.5f, .4f, -.5f);
-        cameraController.transform.position = new Vector3(-1.5f, 3.4f, -2.5f);
+        playerBall.SetVelocity(new Vector3 (0, 0 ,0));
+        playerBall.SetAngularVelocity(new Vector3(0, 0, 0));
+        playerBall.transform.position = new Vector3(.5f, .35f, -.5f);
+        cameraController.transform.position = new Vector3(-9f, 9, -8.5f);
         mainPlatform.transform.position = new Vector3(0, 0, 0);
 
         //Выставляем флаг направления игрока "Вверх".
@@ -87,9 +94,10 @@ public class GameController : MonoBehaviour
     public void GameIsOver()
     {
         IsReady = false;
+        IsGame = false;
         IsOver = true;
         //Выставить время на паузу.
-        timeController.SetPauseOn();
+        //timeController.SetPauseOn();
     }
 
     private void Update()

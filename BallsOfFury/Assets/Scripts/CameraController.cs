@@ -18,7 +18,7 @@ public class CameraController : MonoBehaviour
         if(target.transform.position.y > 0)
         {
             Vector3 position = target.transform.position;
-            position += new Vector3(-2, 3, -2);
+            position += new Vector3(-10.66f, 9.4f, -9.11f);
             this.transform.position = Vector3.Lerp(transform.position, position, speed * Time.deltaTime * 2);
         }
         

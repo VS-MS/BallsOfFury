@@ -25,17 +25,14 @@ public class PlayerBall : MonoBehaviour
     void FixedUpdate()
     {
         //Проверяем, если игрок сорвался с платформы, перестаем его толкать,
-        if(GetPlatform())
+        if(GetPlatform() && gameController.IsGame)
         {
             if (Direction)
             {
-                //Если использовать AddForce у шара будет инерция
-                //playerRigidbody.AddForce(Vector3.forward * speed * Time.fixedDeltaTime);
                 playerRigidbody.velocity = Vector3.forward * speed;
             }
             else
             {
-                //playerRigidbody.AddForce(Vector3.right * speed * Time.fixedDeltaTime);
                 playerRigidbody.velocity = Vector3.right * speed;
             }
         }
@@ -57,5 +54,15 @@ public class PlayerBall : MonoBehaviour
             Debug.DrawRay(transform.position, -Vector3.up * 1000, Color.white);
             return false;
         }
+    }
+
+    public void SetVelocity(Vector3 vectorVelosity)
+    {
+        this.GetComponent<Rigidbody>().velocity = vectorVelosity;
+    }
+
+    public void SetAngularVelocity(Vector3 vectorVelosity)
+    {
+        this.GetComponent<Rigidbody>().angularVelocity = vectorVelosity;
     }
 }
